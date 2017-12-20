@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace OhmCalculatorWeb.Controllers
 {
@@ -10,21 +6,59 @@ namespace OhmCalculatorWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new OhmViewModel { Message = "", OhmValue = "" };
+            return View(model);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index(string bandAColorList, string bandBColorList, string MultiplierBandColorList, string ToleranceBandColorList)
         {
-            ViewBag.Message = "Your application description page.";
+            string ohms = "";
+            string message = "";
+            string BandAColorSelected = "Brown";
+            string BandBColorSelected = "Black";
+            string MultiplierBandColorSelected = "Black";
+            string ToleranceBandColorSelected = "Brown";
+            if (bandAColorList != null && bandBColorList != null && MultiplierBandColorList != null && ToleranceBandColorList != null)
+            {
+                try
+                {
+                    ohms = new OhmCalculatorClass().CalculateOhmAndTolerance(bandAColorList, bandBColorList, MultiplierBandColorList, ToleranceBandColorList);
+                    message = "Resistor Value:";
+                    BandAColorSelected = bandAColorList;
+                    BandBColorSelected = bandBColorList;
+                    MultiplierBandColorSelected = MultiplierBandColorList;
+                    ToleranceBandColorSelected = ToleranceBandColorList;
+                }
+                catch (ResistorBandColorException)
+                {
+                    message = "Wrong color band configuration";
+                }                
+            }
+            var model = new OhmViewModel { Message = message,
+                                           OhmValue = ohms,
+                                           BandAColorSelected = BandAColorSelected,
+                                           BandBColorSelected = BandBColorSelected,
+                                           MultiplierBandColorSelected = MultiplierBandColorSelected,
+                                           ToleranceBandColorSelected = ToleranceBandColorSelected,
+            };
 
-            return View();
+            return View(model);
         }
+    }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+    public class OhmViewModel
+    {
+        public string OhmValue { get; set; }
 
-            return View();
-        }
+        public string Message { get; set; }
+
+        public string BandAColorSelected { get; set; }
+
+        public string BandBColorSelected { get; set; }
+
+        public string MultiplierBandColorSelected { get; set; }
+
+        public string ToleranceBandColorSelected { get; set; }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OhmCalculator;
-using System.Collections;
 
-namespace OhmCalculator
+namespace OhmCalculatorWeb.Tests.Controllers
 {
     [TestClass]
     public class UnitTest1
@@ -13,7 +11,7 @@ namespace OhmCalculator
         {
             // Tests that we expect to return true.
             //Array format: bandAColor, bandBColor, bandCColor, bandDColor, correctResult
-            string[][] bands = new string[4][]; 
+            string[][] bands = new string[4][];
             bands[0] = new string[] { "Red", "Red", "Orange", "Gold", "22000" };
             bands[1] = new string[] { "Yellow", "Violet", "Brown", "Gold", "470" };
             bands[2] = new string[] { "Blue", "Gray", "Black", "Gold", "68" };

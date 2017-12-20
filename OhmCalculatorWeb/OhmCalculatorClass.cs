@@ -1,26 +1,7 @@
 ﻿using System;
 
-namespace TestingEnum
+namespace OhmCalculatorWeb
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            string[][] bands = new string[4][];
-            bands[0] = new string[] { "Red", "Red", "Orange", "Gold", "22000" };
-            bands[1] = new string[] { "Yellow", "Violet", "Brown", "Gold", "470" };
-            bands[2] = new string[] { "Blue", "Gray", "Black", "Gold", "68" };
-            bands[3] = new string[] { "Black", "Orange", "Brown", "Red", "30" };
-
-            foreach (var band in bands)
-            {
-                int ohms = new OhmCalculatorClass().CalculateOhmValue(band[0], band[1], band[2], band[3]);
-                bool result = ohms.ToString().Equals(band[4]);
-            }
-                Console.WriteLine("Hello World!");
-        }
-    }
-
     public interface IOhmValueCalculator
     {
         /// <summary>
@@ -39,6 +20,11 @@ namespace TestingEnum
         {
             return new Resistor(bandAColor, bandBColor, bandCColor, bandDColor).CalculateOhm();
         }
+
+        public string CalculateOhmAndTolerance(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
+        {
+            return new Resistor(bandAColor, bandBColor, bandCColor, bandDColor).CalculateOhmAndTolerance();
+        }
     }
 
     public class Resistor
@@ -50,7 +36,6 @@ namespace TestingEnum
 
         public Resistor(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
-            firstBand = new ColorCode((BandColor)Enum.Parse(typeof(BandColor), bandAColor));
             try
             {
                 firstBand = new ColorCode((BandColor)Enum.Parse(typeof(BandColor), bandAColor));
@@ -60,7 +45,7 @@ namespace TestingEnum
             }
             catch (ArgumentException)
             {
-                throw new ResistorBandColorException("aqui");
+                throw new ResistorBandColorException();
             }
         }
 
@@ -163,6 +148,11 @@ namespace TestingEnum
                         SignificantDigits = 8;
                         return;
                     }
+                case BandColor.Gray:
+                    {
+                        SignificantDigits = 8;
+                        return;
+                    }
                 case BandColor.White:
                     {
                         SignificantDigits = 9;
@@ -176,6 +166,12 @@ namespace TestingEnum
                 case BandColor.Silver:
                     {
                         Tolerance = new Tolerance(10);
+                        return;
+                    }
+                case BandColor.None:
+                    {
+                        SignificantDigits = 0;
+                        Multiplier = 0;
                         return;
                     }
                 default:
@@ -197,9 +193,11 @@ namespace TestingEnum
         Blue,
         Violet,
         Grey,
+        Gray,
         White,
         Gold,
-        Silver
+        Silver,
+        None
     }
 
     public class Tolerance
@@ -221,7 +219,6 @@ namespace TestingEnum
     {
         public ResistorBandColorException() : base("Wrong band color") { }
         public ResistorBandColorException(string bandColor) : base("Band color: " + bandColor + " is not an acceptable color") { }
-        public ResistorBandColorException(string bandColor, Exception inner) : base("Band color: " + bandColor + " is not an acceptable color", inner) { }        
+        public ResistorBandColorException(string bandColor, Exception inner) : base("Band color: " + bandColor + " is not an acceptable color", inner) { }
     }
 }
-

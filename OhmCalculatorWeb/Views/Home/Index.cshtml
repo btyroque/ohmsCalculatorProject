@@ -1,31 +1,55 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Ohm Calculator";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <h1>Ohm Calculator</h1>
+    <p class="lead">Select the color of each band on the resistor:</p>
+    <form action="@Url.Action("Index", "Home")" method="post">
+        <select id="bandAColorList" name="bandAColorList">
+            <option @(Model.BandAColorSelected == "Brown" ? "selected" : "")>Brown</option>
+            <option @(Model.BandAColorSelected == "Red" ? "selected" : "")>Red</option>
+            <option @(Model.BandAColorSelected == "Orange" ? "selected" : "")>Orange</option>
+            <option @(Model.BandAColorSelected == "Yellow" ? "selected" : "")>Yellow</option>
+            <option @(Model.BandAColorSelected == "Green" ? "selected" : "")>Green</option>
+            <option @(Model.BandAColorSelected == "Blue" ? "selected" : "")>Blue</option>
+            <option @(Model.BandAColorSelected == "Violet" ? "selected" : "")>Violet</option>
+            <option @(Model.BandAColorSelected == "Grey" ? "selected" : "")>Grey</option>
+            <option @(Model.BandAColorSelected == "White" ? "selected" : "")>White</option>
+            <option @(Model.BandAColorSelected == "None" ? "selected" : "")>None</option>
+        </select>
+        <select id="bandBColorList" name="bandBColorList">
+            <option @(Model.BandBColorSelected == "Black" ? "selected" : "")>Black</option>
+            <option @(Model.BandBColorSelected == "Brown" ? "selected" : "")>Brown</option>
+            <option @(Model.BandBColorSelected == "Red" ? "selected" : "")>Red</option>
+            <option @(Model.BandBColorSelected == "Orange" ? "selected" : "")>Orange</option>
+            <option @(Model.BandBColorSelected == "Yellow" ? "selected" : "")>Yellow</option>
+            <option @(Model.BandBColorSelected == "Green" ? "selected" : "")>Green</option>
+            <option @(Model.BandBColorSelected == "Blue" ? "selected" : "")>Blue</option>
+            <option @(Model.BandBColorSelected == "Violet" ? "selected" : "")>Violet</option>
+            <option @(Model.BandBColorSelected == "Grey" ? "selected" : "")>Grey</option>
+            <option @(Model.BandBColorSelected == "White" ? "selected" : "")>White</option>
+        </select>
+        <select id="MultiplierBandColorList" name="MultiplierBandColorList">
+            <option @(Model.MultiplierBandColorSelected == "Black" ? "selected" : "")>Black</option>
+            <option @(Model.MultiplierBandColorSelected == "Brown" ? "selected" : "")>Brown</option>
+            <option @(Model.MultiplierBandColorSelected == "Red" ? "selected" : "")>Red</option>
+            <option @(Model.MultiplierBandColorSelected == "Orange" ? "selected" : "")>Orange</option>
+            <option @(Model.MultiplierBandColorSelected == "Yellow" ? "selected" : "")>Yellow</option>
+            <option @(Model.MultiplierBandColorSelected == "Green" ? "selected" : "")>Green</option>
+            <option @(Model.MultiplierBandColorSelected == "Blue" ? "selected" : "")>Blue</option>
+            <option @(Model.MultiplierBandColorSelected == "Violet" ? "selected" : "")>Violet</option>
+            <option @(Model.MultiplierBandColorSelected == "None" ? "selected" : "")>None</option>
+        </select>
+        <select id="ToleranceBandColorList" name="ToleranceBandColorList">
+            <option @(Model.ToleranceBandColorSelected == "Brown" ? "selected" : "")>Brown</option>
+            <option @(Model.ToleranceBandColorSelected == "Red" ? "selected" : "")>Red</option>
+            <option @(Model.ToleranceBandColorSelected == "Green" ? "selected" : "")>Green</option>
+            <option @(Model.ToleranceBandColorSelected == "Gold" ? "selected" : "")>Gold</option>
+            <option @(Model.ToleranceBandColorSelected == "Silver" ? "selected" : "")>Silver</option>
+            <option @(Model.ToleranceBandColorSelected == "None" ? "selected" : "")>None</option>
+        </select>
+        <button type="submit" value="Calculate" name="Calculate">Calculate</button>
+    </form>    
+    <p>@Model.Message @Model.OhmValue</p>
 </div>
