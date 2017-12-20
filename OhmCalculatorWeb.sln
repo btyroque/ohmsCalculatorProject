@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhmCalculatorWeb", "OhmCalculatorWeb\OhmCalculatorWeb.csproj", "{0BB4936F-DE84-4058-A24C-82535F6B10B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhmCalculatorWeb.Tests", "OhmCalculatorWeb.Tests\OhmCalculatorWeb.Tests.csproj", "{9A945643-E190-411B-8B7B-D887A43DB6A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BB4936F-DE84-4058-A24C-82535F6B10B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB4936F-DE84-4058-A24C-82535F6B10B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB4936F-DE84-4058-A24C-82535F6B10B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB4936F-DE84-4058-A24C-82535F6B10B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A945643-E190-411B-8B7B-D887A43DB6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A945643-E190-411B-8B7B-D887A43DB6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A945643-E190-411B-8B7B-D887A43DB6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A945643-E190-411B-8B7B-D887A43DB6A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11761A70-0BE0-41B4-9C14-033F25EE2B9D}
+	EndGlobalSection
+EndGlobal
